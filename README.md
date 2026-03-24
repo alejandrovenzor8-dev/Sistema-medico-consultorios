@@ -134,6 +134,11 @@ npm start
 |--------|----------|-------------|
 | GET | `/api/dashboard` | Estadísticas generales |
 
+### Asistente IA (solo rol `doctor`)
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| POST | `/api/assistant/query` | Consulta en lenguaje natural (medicamentos, historial, insights) |
+
 ## 🧪 Tests
 
 ```bash
@@ -164,4 +169,14 @@ DB_PASSWORD=postgres
 JWT_SECRET=tu_clave_secreta_muy_segura
 JWT_EXPIRES_IN=7d
 FRONTEND_URL=http://localhost:3000
+IA_PROVIDER=openai
+OPENAI_API_KEY=
+OPENAI_MODEL=gpt-4o-mini
+
+# Azure OpenAI (opcional)
+# IA_PROVIDER=azure
+# AZURE_OPENAI_API_KEY=
+# AZURE_OPENAI_ENDPOINT=
+# AZURE_OPENAI_DEPLOYMENT=
+# AZURE_OPENAI_API_VERSION=2024-02-15-preview
 ```

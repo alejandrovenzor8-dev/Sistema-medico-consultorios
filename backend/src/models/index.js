@@ -4,6 +4,7 @@ const Patient = require('./Patient');
 const Appointment = require('./Appointment');
 const ClinicalRecord = require('./ClinicalRecord');
 const Payment = require('./Payment');
+const AssistantQueryLog = require('./AssistantQueryLog');
 
 // User <-> Patient associations
 User.hasMany(Appointment, { foreignKey: 'doctorId', as: 'doctorAppointments' });
@@ -27,4 +28,15 @@ Payment.belongsTo(Patient, { foreignKey: 'patientId', as: 'patient' });
 Appointment.hasMany(Payment, { foreignKey: 'appointmentId', as: 'payments' });
 Payment.belongsTo(Appointment, { foreignKey: 'appointmentId', as: 'appointment' });
 
-module.exports = { sequelize, User, Patient, Appointment, ClinicalRecord, Payment };
+User.hasMany(AssistantQueryLog, { foreignKey: 'userId', as: 'assistantQueries' });
+AssistantQueryLog.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+
+module.exports = {
+	sequelize,
+	User,
+	Patient,
+	Appointment,
+	ClinicalRecord,
+	Payment,
+	AssistantQueryLog,
+};
