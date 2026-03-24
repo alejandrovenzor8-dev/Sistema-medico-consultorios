@@ -42,8 +42,13 @@ const Finance = () => {
       setTotal(payRes.data.total);
 
       const report = repRes.data.report || [];
+      // Build a lookup map keyed by month index for O(1) access
+      const reportByMonth = {};
+      report.forEach((r) => {
+        reportByMonth[new Date(r.month).getMonth()] = r;
+      });
       const data = monthNames.map((name, idx) => {
-        const found = report.find((r) => new Date(r.month).getMonth() === idx);
+        const found = reportByMonth[idx];
         return { name, total: found ? parseFloat(found.total) : 0 };
       });
       setChartData(data);

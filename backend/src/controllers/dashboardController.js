@@ -39,7 +39,7 @@ const getDashboard = async (req, res) => {
           status: { [Op.notIn]: ['cancelled'] },
         },
         include: [
-          { model: require('../models/Patient'), as: 'patient', attributes: ['id', 'firstName', 'lastName'] },
+          { model: Patient, as: 'patient', attributes: ['id', 'firstName', 'lastName'] },
         ],
         order: [['scheduledAt', 'ASC']],
         limit: 5,

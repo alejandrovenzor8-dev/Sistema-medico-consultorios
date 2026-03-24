@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const { sequelize } = require('./models');
 
 const app = express();
@@ -10,6 +11,16 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json());
+
+// General API rate limiter
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 300,
+  message: { message: 'Too many requests, please try again later' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+app.use('/api/', apiLimiter);
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));

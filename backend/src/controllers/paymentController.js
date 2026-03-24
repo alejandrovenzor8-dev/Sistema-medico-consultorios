@@ -110,7 +110,10 @@ const getFinanceSummary = async (req, res) => {
 
 const getMonthlyReport = async (req, res) => {
   try {
-    const { year = new Date().getFullYear() } = req.query;
+    const yearParam = parseInt(req.query.year, 10);
+    const year = Number.isFinite(yearParam) && yearParam >= 2000 && yearParam <= 2100
+      ? yearParam
+      : new Date().getFullYear();
 
     const results = await Payment.findAll({
       where: {

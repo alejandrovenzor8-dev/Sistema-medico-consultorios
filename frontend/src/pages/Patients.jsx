@@ -6,7 +6,7 @@ const genderMap = { male: 'Masculino', female: 'Femenino', other: 'Otro' };
 const initialForm = {
   firstName: '', lastName: '', dateOfBirth: '', gender: 'male',
   phone: '', email: '', address: '', bloodType: '', allergies: '',
-  emergencyContactName: '', emergencyContactPhone: '', notes: '',
+  emergencyContactName: '', emergencyContactPhone: '', insuranceProvider: '', notes: '',
 };
 
 const Patients = () => {
